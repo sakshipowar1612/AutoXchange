@@ -14,10 +14,12 @@ def login_view(request):
             user = authenticate(username=username, password=password)
             if user is not None:
                 login(request, user)
-                messages.success(request, f'Your are now logged in as {username}')
+                messages.success(request, f'Your are now logged in as {username}.')
                 return redirect('home')
             else:
-                pass
+                messages.error(request, f'An error occured trying to login')
+        else:
+            messages.error(request, f'An error occured trying to login')
     elif request.method == 'GET':  
         login_form = AuthenticationForm()
     return  render(request, 'views/login.html', {'login_form':login_form})
