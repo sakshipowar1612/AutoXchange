@@ -1,6 +1,7 @@
 # from django.http import HttpResponse
 from django.shortcuts import render, redirect
 from django.contrib.auth.forms import AuthenticationForm
+from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth import authenticate, login
 from django.contrib import messages
 
@@ -23,3 +24,9 @@ def login_view(request):
     elif request.method == 'GET':  
         login_form = AuthenticationForm()
     return  render(request, 'views/login.html', {'login_form':login_form})
+
+
+def register_view(request):
+    register_form = UserCreationForm()
+    return render(request, 'views/register.html', {'register_form': register_form})
+
