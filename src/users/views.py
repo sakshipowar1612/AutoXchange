@@ -2,7 +2,8 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth.forms import AuthenticationForm
 from django.contrib.auth.forms import UserCreationForm
-from django.contrib.auth import authenticate, login
+from django.contrib.auth import authenticate, login, logout
+from django.contrib.auth.decorators import login_required
 from django.contrib import messages
 from django.views import View
 # Create your views here.
@@ -25,6 +26,10 @@ def login_view(request):
         login_form = AuthenticationForm()
     return  render(request, 'views/login.html', {'login_form':login_form})
 
+@login_required
+def logout_view(request):
+    logout(request)
+    return redirect('main')
 
 # def register_view(request):
 #     register_form = UserCreationForm()
