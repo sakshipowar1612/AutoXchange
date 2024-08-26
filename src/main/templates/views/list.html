@@ -13,6 +13,18 @@
                 </div>
             </div>
         </div>
+        <form action="" method="post" enctype="multipart/form-data">
+            {% csrf_token %}
+            <div class="row">
+                <div class="col-6">
+                    {{listing_form|crispy}}
+                </div>
+                <div class="col-6">
+                    {{location_form|crispy}}
+                </div>
+            </div>
+            <button class="btn btn-lg btn-danger" type="submit">Save</button>
+        </form>
     </div>
 
 <div>
