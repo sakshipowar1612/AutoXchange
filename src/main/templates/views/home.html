@@ -7,6 +7,30 @@
 
 {% block 'body' %}
 <main>
-    
+    <section class="py-5 container">
+        <div class="row py-lg-5">
+            <div class="col-lg-6 col-md-8 mx-auto">
+                <h1 class="fw-light">AutoXchange</h1>
+                <p class="lead text-muted">The best place to buy or sell modern enthusiast cars, and we’ve
+                    made it that much easier.</p>
+                <a href="" class="btn btn-primary my-2">List Your Car</a>
+            </div>
+            <div class="col-lg-6 col-md-8 mx-auto">
+                
+            </div>
+        </div>
+    </section>
+   <div class="album py-5 bg-light">
+        <div class="container">
+            <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
+                {% for listing in listings %}
+                    <div class="col">
+                        <p>{{ listing.id }}</p>
+                    </div>
+
+                {% endfor %}
+            </div>
+        </div>
+    </div> 
 </main>
 {% endblock %}
