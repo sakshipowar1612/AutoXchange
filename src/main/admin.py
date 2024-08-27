@@ -2,7 +2,13 @@ from django.contrib import admin
 
 from .models import Listing
 
+
 class ListingAdmin(admin.ModelAdmin):
-    pass
-# Register your models here.
-admin.site.register(Listing)
+    readonly_fields = ('id', )
+
+
+# class LikedListingAdmin(admin.ModelAdmin):
+#     readonly_fields = ('id', )
+
+
+admin.site.register(Listing, ListingAdmin)
