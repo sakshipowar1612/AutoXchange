@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     'localflavor',
     'crispy_forms',
     'crispy_bootstrap4',
+    'django_filters',
     'main',
     'users',
 ]
