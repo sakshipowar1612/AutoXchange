@@ -1,9 +1,10 @@
 from django.http import HttpResponse
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.contrib.auth.decorators import login_required
 from .models import Listing
 from .forms import ListingForm
 from users.forms import LocationForm
+from django.contrib import messages
 
 # Create your views here.
 def main_view(request):
@@ -22,7 +23,23 @@ def home_view(request):
 @login_required
 def list_view(request):
     if request.method == 'POST':
-        pass
+        try:
+            listing_form = ListingForm(request.POST, request.FILES)
+            location_form = LocationForm(request.POST)
+            if listing_form.is_valid() and location_form.is_valid():
+                listing = listing_form.save(commit=False)
+                listing_location = location_form.save()
+                listing.seller = request.user.profile
+                listing.location = listing_location
+                listing.save()
+                messages.info(request, f'{listing.model} Listing posted succesfully')
+                return redirect('home')
+            else:
+                raise Exception()
+        except Exception as e:
+            print(e)
+            messages.error(request,'An error occured while posting the listing.')
+
     elif request.method == 'GET':
         listing_form =ListingForm()
         location_form = LocationForm()
