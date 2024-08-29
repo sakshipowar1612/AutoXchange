@@ -27,7 +27,7 @@
             </div>
         </form>
     </div>
-    {% comment %} <div class="container px-4">
+    <div class="container px-4">
         <div class="row g-4 py-5">
             <div class="col d-flex align-items-start">
                 <div>
@@ -56,14 +56,14 @@
         </div>
         <table class="table table-hover">
             <tbody>
-                {% for liked_listing in user_liked_listings %}
+                {% for listing in user_listings %}
                 <tr>
-                    <td>{{ liked_listing.listing.model }}</td>
-                    <td>{{ liked_listing.like_date }}</td>
+                    <td>{{ listing.id }}</td>
+                    <td>{{ listing.model }}</td>
                 </tr>
                 {% endfor %}
             </tbody>
         </table>
-    </div> {% endcomment %}
+    </div> 
 </div>
 {% endblock %}
