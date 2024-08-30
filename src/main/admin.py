@@ -11,4 +11,5 @@ class LikedListingAdmin(admin.ModelAdmin):
     readonly_fields = ('id', )
 
 
-admin.site.register(Listing, LikedListingAdmin)
+admin.site.register(Listing, ListingAdmin)
+admin.site.register(LikedListing, LikedListingAdmin)

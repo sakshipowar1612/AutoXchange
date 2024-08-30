@@ -56,14 +56,14 @@
         </div>
         <table class="table table-hover">
             <tbody>
-                {% for listing in user_listings %}
+                {% for liked_listing in user_liked_listings %}
                 <tr>
-                    <td>{{ listing.id }}</td>
-                    <td>{{ listing.model }}</td>
+                    <td>{{ liked_listing.listing.model }}</td>
+                    <td>{{ liked_listing.like_date }}</td>
                 </tr>
                 {% endfor %}
             </tbody>
         </table>
-    </div> 
+    </div>
 </div>
 {% endblock %}
