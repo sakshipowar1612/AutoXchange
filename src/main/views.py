@@ -99,10 +99,10 @@ def edit_view(request, id):
 
 @login_required
 def like_listing_view(request, id):
-    
     listing = get_object_or_404(Listing, id=id)
 
-    liked_listing, created = LikedListing.objects.get_or_create(profile=request.user.profile, listing=listing)
+    liked_listing, created = LikedListing.objects.get_or_create(
+        profile=request.user.profile, listing=listing)
 
     if not created:
         liked_listing.delete()
@@ -110,5 +110,5 @@ def like_listing_view(request, id):
         liked_listing.save()
 
     return JsonResponse({
-        'lis_liked_by_user' : created, 
+        'is_liked_by_user': created,
     })
