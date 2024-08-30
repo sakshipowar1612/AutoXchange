@@ -19,8 +19,12 @@ def main_view(request):
 def home_view(request):
     listings = Listing.objects.all()
     listing_filter = ListingFilter(request.GET, queryset=listings)
+    user_liked_listing = LikedListing.objects.filter(profile=request.user.profile).values_list('listing')
+    liked_listing_ids = [l[0] for l in user_liked_listing]
+    print(liked_listing_ids)
     context = {
         'listing_filter' : listing_filter,
+         'liked_listing_ids' : liked_listing_ids,
     }
     return render(request, "views/home.html", context)
 
