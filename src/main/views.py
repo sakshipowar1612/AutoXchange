@@ -1,12 +1,15 @@
 import importlib
 from django.http import HttpResponse
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth.decorators import login_required
-from .models import Listing
+from .models import Listing, LikedListing
 from .forms import ListingForm
 from users.forms import LocationForm
 from django.contrib import messages
 from .filters import ListingFilter
+from django.http import JsonResponse
+
+
 # Create your views here.
 def main_view(request):
     return render(request, "views/main.html", {"name":"AutoMax"})#dynamically injection data in html
@@ -92,3 +95,20 @@ def edit_view(request, id):
     except Exception as e:
         messages.error(request, 'An error occurred while trying to update the listing.')
         return redirect('home')
+
+
+@login_required
+def like_listing_view(request, id):
+    
+    listing = get_object_or_404(Listing, id=id)
+
+    liked_listing, created = LikedListing.objects.get_or_create(profile=request.user.profile, listing=listing)
+
+    if not created:
+        liked_listing.delete()
+    else:
+        liked_listing.save()
+
+    return JsonResponse({
+        'lis_liked_by_user' : created, 
+    })
