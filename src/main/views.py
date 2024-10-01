@@ -14,7 +14,7 @@ from django.core.mail import send_mail
 
 # Create your views here.
 def main_view(request):
-    return render(request, "views/main.html", {"name":"AutoMax"})#dynamically injection data in html
+    return render(request, "views/main.html", {"name":"AutoXchange"})#dynamically injection data in html
     # return HttpResponse("<h1>Welcome To Automax</h1>")
 
 @login_required
